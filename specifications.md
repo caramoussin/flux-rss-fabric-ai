@@ -1,10 +1,18 @@
-# Smart RSS Aggregator App Specification
+# Smart RSS and Web Content Aggregator
 
 ## Overview
 
-This specification outlines the development of a local-first application built with Bun and SvelteKit, served through a unified local server. The app is a powerful RSS feed aggregator that enhances content consumption through AI-powered analysis provided by Fabric AI, prioritizing user privacy, data ownership, and offline-first functionality.
+This specification outlines the development of an agentic, local-first application built with Bun and SvelteKit. The app is an intelligent content aggregator that proactively fetches, analyzes, and organizes web content through RSS feeds and smart web scraping. It leverages Fabric AI for autonomous content processing, prioritizing user privacy, data ownership, and offline-first functionality.
 
 ## Core Principles
+
+### Agentic Architecture
+
+- Autonomous content discovery and categorization
+- Proactive content suggestions based on user interests
+- Self-learning content organization system
+- Intelligent feed health monitoring and maintenance
+- Automated content quality assessment
 
 ### Local-First Approach
 
@@ -16,28 +24,30 @@ This specification outlines the development of a local-first application built w
 
 ## Features
 
-### 1. RSS Feed Management
+### 1. Intelligent Web Content Management
 
+#### RSS Feed Management
 - Fetch and parse RSS feeds
 - Create named collections
 - Support various content types
 - Folder organization
 - Local storage of feeds
 - Offline reading capability
-- **Web Scraping and HTML/JSON Parsing**
-  - Support for custom web scraping rules
-  - HTML content extraction and parsing
-  - JSON data retrieval from web sources
-  - Configurable scraping strategies
-  - Respect for website robots.txt and scraping ethics
-  - Intelligent content detection and filtering
-  - Fallback mechanisms for different content formats
-  - Automatic source type detection (RSS, HTML, JSON)
-  - Caching and rate-limiting to prevent overloading sources
+
+#### Advanced Web Scraping
+- Multi-format content extraction (HTML, JSON, RSS)
+- Custom scraping rules with CSS/XPath selectors
+- Intelligent content structure detection
+- Auto-discovery of feed alternatives
+- Rate limiting and caching system
+- Robots.txt compliance
+- Error recovery and fallback mechanisms
+- Content change detection
+- CORS-aware architecture
 
 ### 2. AI-Powered Analysis
 
-- Content summarization
+- Content summarization with configurable detail levels
 - Topic extraction and categorization
 - Content rating and relevance scoring
 - Scientific content vulgarization
@@ -45,398 +55,148 @@ This specification outlines the development of a local-first application built w
 - Direct AI integration
 - Result caching
 
-### 3. Content Organization
+### 3. Agentic Content Organization
 
-- AI-suggested categories
-- User-defined categories
-- Hierarchical structure
-- Multi-label classification
+- AI-driven content discovery
+- Automated category suggestions
+- Dynamic content relationships
 - Smart tagging system
-- Dynamic organization
-- Content relationships
+- Content quality scoring
+- Automated content cleanup
+- Link rot detection and management
 
-### 4. User Interface
+### 4. Modern UI/UX
 
 - Server-rendered SvelteKit
 - Tailwind CSS styling
-- shadcn-svelte components
+- Skeleton UI theme and components
 - Responsive design
 - Dark mode support
 - Real-time updates
 - Offline support
 
-### 5. Data Management
-
-- SQLite database
-- Import/export capabilities
-- Automatic backups
-- Data integrity checks
-- Search and filtering
-- Background syncing
-
 ## Technical Architecture
 
-### Unified Local Server
+### Development Stack
 
-- Bun runtime for performance
-- SvelteKit application server
-- SQLite database engine
-- Fabric AI integration
-- WebSocket for real-time updates
-- Background job processing
-- Resource management
+- Runtime & Package Manager: Bun
+- Frontend Framework: SvelteKit
+- Database: SQLite with Drizzle ORM
+- AI Integration: Fabric AI
+- HTML Parsing: Cheerio
+- Schema Validation: Zod
+- UI Components: Skeleton UI
 
-### Frontend Stack
+### Service Layer Architecture
 
-- SvelteKit (server-rendered)
-- Tailwind CSS for styling
-- shadcn-svelte components
-- WebSocket client
-- Service workers
-- Local caching
+- Service interfaces between API routes and database
+- Separation of concerns with dedicated services:
+  
+  #### FeedService
+  - RSS feed validation and parsing
+  - Basic feed refresh management
+  - Feed metadata storage (title, description)
+  - Simple feed organization
+  - Feed entry storage and retrieval
+  
+  #### ScraperService
+  - Basic web content extraction (HTML, JSON)
+  - Rate limiting implementation
+  - robots.txt compliance
+  - Error handling
+  - Content type detection
+  - HTML cleaning
+  
+  #### ContentService
+  - Content storage and retrieval
+  - Basic content normalization
+  - Simple text search
+  - Content categorization storage
+  - Basic content health checks
+  
+  #### AgentService
+  - Fabric AI integration
+  - Basic content summarization
+  - Initial categorization
+  - Simple relevance scoring
+  - Basic content quality checks
+
+- Business logic encapsulation
+- Reusable database operations
+- Centralized error handling
+- Transaction management
 
 ### Data Layer
 
-- SQLite for persistence
-- In-memory caching
-- File system storage
-- Data migrations
-- Backup system
-- Query optimization
-
-### AI Integration
-
-- Direct Fabric AI integration
-- Shared resource management
-- Efficient data passing
-- Result caching
-- Background processing
-- Model management
-
-## Installation System
-
-### Desktop Application
-
-- Single executable bundle containing:
-  - Bun runtime
-  - Application server
-  - SQLite database
-  - Fabric AI integration
-  - Frontend assets
-- System tray integration
-- Auto-start capability
-- Update management
-
-### Configuration
-
-- Initial setup wizard
-- LLM provider selection
-- API key management
-- Port configuration
-- Resource limits
-- Backup settings
-
-### Security
-
-- Local-only access
-- Process isolation
-- Data encryption
-- Secure configuration
-- Permission management
-
-## Development Process
-
-1. Server Setup
-   - Bun server configuration
-   - Database schema design
-   - API development
-   - Fabric AI integration
-   - WebSocket implementation
-
-2. Frontend Development
-   - SvelteKit setup
-   - Component library
-   - Real-time updates
-   - Offline capabilities
-   - UI/UX implementation
-
-3. Core Features
-   - RSS feed management
-   - Content organization
-   - Search functionality
-   - Data import/export
-
-4. AI Features
-   - Content analysis
-   - Categorization system
-   - Summarization
-   - Learning system
-   - Result caching
-
-5. Distribution
-   - Application bundling
-   - Installer creation
-   - Auto-update system
-   - Documentation
-   - Testing suite
-
-## Pilot Implementation
-
-### Diabetes Research Focus
-
-- Pre-configured research profile
-- Curated RSS feeds
-- Medical content analysis
-- Specialized categories
-- Terminology handling
-
-### Data Sources
-
-- Medical journals
-- Clinical trials
-- Healthcare organizations
-- Patient resources
-- Research updates
-
-## Future Enhancements
-
-- Enhanced backup options
-- Cross-device synchronization
-- Advanced AI capabilities
-- Collaborative features
-- Extended offline support
-- Custom analysis templates
-
-## System Requirements
-
-- RAM: 8GB recommended
-- Storage: 2GB for application
-- CPU: Multi-core processor
-- OS: Cross-platform support
-- Ports: One available local port
-- Internet: Optional (required for RSS and AI)
-
-## Project Vision
-
-Flux RSS Fabric AI aims to revolutionize content aggregation and analysis through intelligent, user-centric design and advanced AI technologies.
-
-## Current Implementation Status
-
-### Web Scraping Service
-
-- [x] Multi-content type support
-  - HTML content extraction
-  - JSON data parsing
-  - RSS feed extraction
-- [x] Robust error handling
-- [x] Configurable scraping options
-- [x] Zod-based type validation
-- [x] Robots.txt compliance check
-
-### Frontend Architecture
-
-- [x] SvelteKit-based application
-- [x] Svelte 5 compatibility
-- [x] Server-side and client-side rendering
-- [x] shadcn-svelte UI components
-
-### Scraping Demo Page
-
-- [x] Dynamic website URL input
-- [x] Configurable CSS selector
-- [x] Server-side initial fetch
-- [x] Client-side HTML parsing
-- [x] Error handling and loading states
-
-## Comprehensive Development Roadmap
-
-### Phase 1: Core RSS Feed Management [CURRENT FOCUS]
-
-#### Objectives
-
-- Establish robust foundation for feed retrieval
-- Implement flexible web scraping mechanisms
-- Create scalable data management system
-
-#### Key Milestones
-
-- [x] Basic RSS Feed Fetching and Parsing
-- [x] SQLite Database Integration
-- [x] Background Periodic Feed Updates
-- [x] Web Scraping Service Implementation
-- [ ] Comprehensive Feed Management
-  - Add new RSS feeds manually
-  - Validate and verify feed URLs
-  - Support multiple feed formats (RSS, Atom)
-
-#### Feed Collection System
-
-- [ ] Create named collections
-- [ ] Organize feeds into collections
-- [ ] Move and categorize feeds
-
-#### Feed Metadata Tracking
-
-- [ ] Store feed metadata (title, description, last updated)
-- [ ] Track feed fetch history
-- [ ] Monitor feed update frequency
-
-### Phase 2: Enhanced Feed Organization
-
-#### Advanced Filtering
-
-- [ ] Filter feeds by collection
-- [ ] Search across feed titles and descriptions
-- [ ] Sort feeds by various criteria
-
-#### Feed Health Monitoring
-
-- [ ] Check feed availability
-- [ ] Detect and handle broken feeds
-- [ ] Provide feed health status
-
-#### Import/Export Functionality
-
-- [ ] OPML import support
-- [ ] Export feed collections
-- [ ] Backup and restore feed configurations
-
-### Phase 3: User Experience Improvements
-
-#### Interface Design
-
-- [ ] Responsive Feed Management Interface
-- [ ] Drag-and-drop feed organization
-- [ ] Bulk feed operations
-- [ ] Intuitive feed addition wizard
-
-#### Offline Capabilities
-
-- [ ] Cache feed items locally
-- [ ] Read feeds without internet connection
-- [ ] Sync when connection is restored
-
-#### Notification System
-
-- [ ] Alerts for new feed items
-- [ ] Configurable update notifications
-- [ ] Feed update summary
-
-### Phase 4: Initial AI Integration
-
-#### Content Analysis
-
-- [ ] Extract basic metadata from feed items
-- [ ] Simple content length and type detection
-- [ ] Preliminary categorization
-
-#### Summarization
-
-- [ ] Generate short summaries
-- [ ] Extract key points from articles
-- [ ] Provide reading time estimates
-
-#### Recommendation System
-
-- [ ] Basic content similarity detection
-- [ ] Suggest related feed items
-- [ ] Simple user interaction tracking
-
-### Phase 5: Advanced AI Features
-
-#### Enhanced Analysis
-
-- [ ] Advanced summarization
-- [ ] Sentiment analysis
-- [ ] Detailed topic extraction
-
-#### Intelligent Categorization
-
-- [ ] Machine learning-based categorization
-- [ ] User-trainable classification
-- [ ] Multi-label content tagging
-
-#### Personalized Recommendations
-
-- [ ] User preference learning
-- [ ] Advanced content matching
-- [ ] Adaptive recommendation algorithm
-
-### Phase 6: Scalability and Integration
-
-#### Performance Optimization
-
-- [ ] Efficient database querying
-- [ ] Caching mechanisms
-- [ ] Background processing improvements
-
-#### External Integrations
-
-- [ ] Browser extension
-- [ ] Sharing capabilities
-- [ ] API for external access
-
-## Technical Constraints and Considerations
-
-### Web Scraping Limitations
-
-- CORS restrictions require server-side rendering
-- Scraping depends on website structure stability
-- Performance varies based on target website
-
-### Development Environment
-
-- Runtime: Bun
-- Frontend: SvelteKit
-- Parsing: Cheerio
-- Validation: Zod
-- UI Components: shadcn-svelte
-
-## Testing Strategy
-
-### Comprehensive Test Coverage
-
-- Unit tests for WebScraperService
-- Integration tests for scraping functionality
-- Error handling validation
-- Performance benchmarking
-
-### Test Scenarios
-
-- Validate multi-format content extraction
-- Ensure robust error handling
-- Test performance under various network conditions
-- Verify AI analysis accuracy
-
-## Pilot Implementation
-
-### Diabetes Research Focus
-
-[Detailed research-specific implementation strategies]
+- Efficient SQLite queries with Drizzle ORM
+- In-memory caching for performance
+- Structured content storage
+- Automated backups
+- Migration system
+
+### API Design
+
+```typescript
+// Core endpoints
+POST /api/scrape          // Scrape and process new content
+GET  /api/resources       // Get processed resources
+POST /api/discover        // Trigger content discovery
+GET  /api/health          // Check sources health
+
+// Agent endpoints
+POST /api/agent/learn     // Update agent preferences
+GET  /api/agent/suggest   // Get content suggestions
+POST /api/agent/organize  // Trigger content organization
+```
+
+## Development Roadmap
+
+### Phase 1: Core Infrastructure [Month 1-2]
+- Basic RSS feed management
+- Web scraping foundation
+- Database setup
+- Basic UI implementation
+
+### Phase 2: Intelligent Scraping [Month 2-3]
+- Advanced content extraction
+- Multi-format support
+- Error handling
+- Rate limiting
+
+### Phase 3: AI Integration [Month 3-4]
+- Fabric AI integration
+- Content analysis
+- Basic categorization
+- Summary generation
+
+### Phase 4: Agentic Features [Month 4-5]
+- Autonomous content discovery
+- Smart organization
+- Learning system
+- Health monitoring
+
+### Phase 5: Advanced Features [Month 5-6]
+- Content relationships
+- Advanced UI
+- Performance optimization
+- Extended integrations
 
 ## Ethical Considerations
 
 ### Data Privacy
-
-- Implement strict data handling protocols
-- Provide transparent user consent mechanisms
-- Minimize personal data collection
+- Strict data handling protocols
+- Transparent consent mechanisms
+- Minimal data collection
 
 ### AI Fairness
+- Unbiased categorization
+- Regular algorithm audits
+- User control over AI features
 
-- Develop unbiased categorization algorithms
-- Regularly audit AI recommendation systems
-- Provide user control over AI features
+## Future Vision
 
-## Long-Term Vision
-
-- Cross-platform desktop application
-- Advanced machine learning models
-- Community-driven content analysis
-- Seamless user experience across devices
-
-## Specialized Use Cases
-
-- Research-focused feed aggregation
-- Professional content monitoring
-- Personal knowledge management
+- Cross-platform support
+- Advanced ML models
+- Browser extension
+- API ecosystem
+- Community-driven features
